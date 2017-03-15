@@ -12,6 +12,7 @@
 		4D8DB8DB1E799432009575E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8DB8D91E799432009575E4 /* Main.storyboard */; };
 		4D8DB8DD1E799432009575E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D8DB8DC1E799432009575E4 /* Assets.xcassets */; };
 		4D8DB8E01E799432009575E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8DB8DE1E799432009575E4 /* LaunchScreen.storyboard */; };
+		9CA7209E2EADE8EC5F77060C /* Pods_WeatherToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7EC2AB3DBB929A209C28335 /* Pods_WeatherToday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		4D8DB8DC1E799432009575E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D8DB8DF1E799432009575E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D8DB8E11E799432009575E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6144C6AEBD5F7676099953D3 /* Pods-WeatherToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherToday/Pods-WeatherToday.release.xcconfig"; sourceTree = "<group>"; };
+		D7EC2AB3DBB929A209C28335 /* Pods_WeatherToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F784EE1B18615E312665C810 /* Pods-WeatherToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherToday/Pods-WeatherToday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA7209E2EADE8EC5F77060C /* Pods_WeatherToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1153294BE31147CE69B19C02 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F784EE1B18615E312665C810 /* Pods-WeatherToday.debug.xcconfig */,
+				6144C6AEBD5F7676099953D3 /* Pods-WeatherToday.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4D8DB8C91E799432009575E4 = {
 			isa = PBXGroup;
 			children = (
 				4D8DB8D41E799432009575E4 /* WeatherToday */,
 				4D8DB8D31E799432009575E4 /* Products */,
+				1153294BE31147CE69B19C02 /* Pods */,
+				6025306F9E56723393BD0BBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = WeatherToday;
 			sourceTree = "<group>";
 		};
+		6025306F9E56723393BD0BBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7EC2AB3DBB929A209C28335 /* Pods_WeatherToday.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D8DB8E41E799432009575E4 /* Build configuration list for PBXNativeTarget "WeatherToday" */;
 			buildPhases = (
+				3FA67C53DB171F76C226A8D1 /* [CP] Check Pods Manifest.lock */,
 				4D8DB8CE1E799432009575E4 /* Sources */,
 				4D8DB8CF1E799432009575E4 /* Frameworks */,
 				4D8DB8D01E799432009575E4 /* Resources */,
+				B0952B5C9E43CE62026A7D30 /* [CP] Embed Pods Frameworks */,
+				AF2EABBA95AD303B2F539AB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3FA67C53DB171F76C226A8D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AF2EABBA95AD303B2F539AB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherToday/Pods-WeatherToday-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0952B5C9E43CE62026A7D30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherToday/Pods-WeatherToday-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D8DB8CE1E799432009575E4 /* Sources */ = {
@@ -257,6 +332,7 @@
 		};
 		4D8DB8E51E799432009575E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F784EE1B18615E312665C810 /* Pods-WeatherToday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XU99E8K2E;
@@ -270,6 +346,7 @@
 		};
 		4D8DB8E61E799432009575E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6144C6AEBD5F7676099953D3 /* Pods-WeatherToday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XU99E8K2E;
