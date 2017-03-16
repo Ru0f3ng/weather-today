@@ -10,4 +10,4 @@ import Foundation
 
 typealias DownloadComplete = () -> ()
 
-let CURRENT_WEATHER_URL = "https://api.darksky.net/forecast/4be699b21544f952de44fa63a080ce29/42.3601,-71.0589"
+let CURRENT_WEATHER_URL = "https://api.darksky.net/forecast/4be699b21544f952de44fa63a080ce29/\(Location.sharedInstance.latitude!),\(Location.sharedInstance.longitude!)?units=auto"

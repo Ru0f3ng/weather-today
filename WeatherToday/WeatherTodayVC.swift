@@ -8,11 +8,12 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
 var currentWeather = CurrentWeather()
 var forecasts = [Forecast]()
 
-class WeatherTodayVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherTodayVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -23,22 +24,48 @@ class WeatherTodayVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var forecast: Forecast!
     var alamofireDownload: AlamofireDownload!
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
         
         tableView.delegate = self
         tableView.dataSource = self
         
         alamofireDownload = AlamofireDownload()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        alamofireDownload.downloadWeatherDetails {
-            self.updateMainUI()
+        locationAuthStatus()
+    }
+    
+    func locationAuthStatus()
+    {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        {
+            currentLocation = locationManager.location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            
+            alamofireDownload.downloadWeatherDetails {
+                self.updateMainUI()
+            }
+            alamofireDownload.downloadForecastData {
+                self.updateMainUI()
+                self.tableView.reloadData()
+            }
         }
-        
-        alamofireDownload.downloadForecastData {
-            forecasts.remove(at: 0)
-            self.tableView.reloadData()
+        else
+        {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     

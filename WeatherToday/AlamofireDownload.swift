@@ -40,6 +40,7 @@ class AlamofireDownload {
                             forecast.parseDataFrom(weatherDict: object)
                             forecasts.append(forecast)
                         }
+                        forecasts.remove(at: 0)
                     }
                 }
             }
