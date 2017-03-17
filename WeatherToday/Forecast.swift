@@ -15,44 +15,37 @@ class Forecast {
     fileprivate var _weatherType: String!
     
     var currentHour: String {
-        if _currentHour == nil
-        {
+        if _currentHour == nil {
             _currentHour = ""
         }
         return _currentHour
     }
     
     var tempAtCurrentHour: Double {
-        if _tempAtCurrentHour == nil
-        {
+        if _tempAtCurrentHour == nil {
             _tempAtCurrentHour = 0.0
         }
         return _tempAtCurrentHour
     }
     
     var weatherType: String {
-        if _weatherType == nil
-        {
+        if _weatherType == nil {
             _weatherType = ""
         }
         return _weatherType
     }
     
-    func parseDataFrom(weatherDict: Dictionary<String, AnyObject>)
-    {
-        if let temperature = weatherDict["temperature"] as? Double
-        {
+    func parseDataFrom(weatherDict: Dictionary<String, AnyObject>) {
+        if let temperature = weatherDict["temperature"] as? Double {
             let roundedTemperature = round(10 * temperature / 10)
             self._tempAtCurrentHour = roundedTemperature
         }
         
-        if let icon = weatherDict["icon"] as? String
-        {
+        if let icon = weatherDict["icon"] as? String {
             self._weatherType = icon
         }
         
-        if let time = weatherDict["time"] as? Double
-        {
+        if let time = weatherDict["time"] as? Double {
             let unixConvertedDate = Date(timeIntervalSince1970: time)
             let dateFormatter = DateFormatter()
             dateFormatter.timeStyle = .none
@@ -63,8 +56,7 @@ class Forecast {
 }
 
 extension Date {
-    func hourOfTheDay() -> String
-    {
+    func hourOfTheDay() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"
         

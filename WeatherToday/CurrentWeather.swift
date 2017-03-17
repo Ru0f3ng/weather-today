@@ -17,8 +17,7 @@ class CurrentWeather {
     fileprivate var _weatherType: String!
     
     var date: String {
-        if _date == nil
-        {
+        if _date == nil {
             _date = ""
         }
         
@@ -33,58 +32,49 @@ class CurrentWeather {
     }
     
     var cityName: String {
-        if _cityName == nil
-        {
+        if _cityName == nil {
             _cityName = ""
         }
         return _cityName
     }
     
     var weatherSummary: String {
-        if _weatherSummary == nil
-        {
+        if _weatherSummary == nil {
             _weatherSummary = ""
         }
         return _weatherSummary
     }
     
     var currentTemp: Double {
-        if _currentTemp == nil
-        {
+        if _currentTemp == nil {
             _currentTemp = 0.0
         }
         return _currentTemp
     }
     
     var weatherType: String {
-        if _weatherType == nil
-        {
+        if _weatherType == nil {
             _weatherType = ""
         }
         return _weatherType
     }
     
-    func parseDataFrom(weatherDict: Dictionary<String, AnyObject>)
-    {
-        if let timeZone = weatherDict["timezone"] as? String
-        {
+    func parseDataFrom(weatherDict: Dictionary<String, AnyObject>) {
+        if let timeZone = weatherDict["timezone"] as? String {
             self._cityName = timeZone
         }
         
-        if let currently = weatherDict["currently"] as? Dictionary<String, AnyObject>
-        {
-            if let summary = currently["summary"] as? String
-            {
+        if let currently = weatherDict["currently"] as? Dictionary<String, AnyObject> {
+            
+            if let summary = currently["summary"] as? String {
                 self._weatherSummary = summary
             }
             
-            if let icon = currently["icon"] as? String
-            {
+            if let icon = currently["icon"] as? String {
                 self._weatherType = icon
             }
             
-            if let temperature = currently["temperature"] as? Double
-            {
+            if let temperature = currently["temperature"] as? Double {
                 let roundedTemperature = round(10 * temperature / 10)
                 self._currentTemp = roundedTemperature
             }

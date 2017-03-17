@@ -47,10 +47,8 @@ class WeatherTodayVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationAuthStatus()
     }
     
-    func locationAuthStatus()
-    {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
-        {
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             currentLocation = locationManager.location
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
@@ -63,46 +61,37 @@ class WeatherTodayVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.tableView.reloadData()
             }
         }
-        else
-        {
+        else {
             locationManager.requestWhenInUseAuthorization()
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return forecasts.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell
-        {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
             let forecast = forecasts[indexPath.row]
             cell.configureCell(forecast: forecast)
             
             return cell
-        }
-        else
-        {
+        } else {
             return WeatherCell()
         }
     }
     
-    func updateMainUI()
-    {
+    func updateMainUI() {
         dateLabel.text = currentWeather.date
         currentTempLabel.text = "\(currentWeather.currentTemp)°"
         locationLabel.text = currentWeather.cityName
         currentWeatherTypeLabel.text = currentWeather.weatherSummary
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
-   
 }
 
 

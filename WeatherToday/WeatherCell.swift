@@ -14,11 +14,9 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak var weatherTypeImage: UIImageView!
     @IBOutlet weak var tempAtCurrentHourLabel: UILabel!
     
-    func configureCell(forecast: Forecast)
-    {
+    func configureCell(forecast: Forecast) {
         hourLabel.text = "\(forecast.currentHour)h"
         tempAtCurrentHourLabel.text = "\(forecast.tempAtCurrentHour)°"
         weatherTypeImage.image = UIImage(named: forecast.weatherType)
     }
-
 }
