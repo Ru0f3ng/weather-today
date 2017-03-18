@@ -31,7 +31,7 @@ class AlamofireDownload {
                     
                     if let data = hourly["data"] as? [Dictionary<String, AnyObject>] {
                         
-                        for object in data {
+                        for object in data[0..<24] {
                             let forecast = Forecast()
                             forecast.parseDataFrom(weatherDict: object)
                             forecasts.append(forecast)
